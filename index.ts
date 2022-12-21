@@ -30,9 +30,10 @@ export class MyOrderHandler {
 
   public getTotal() {
     const twoForOneDiscount = this.twoForOneDiscount()
-    const subTotal = this.order.reduce((total, item) => total + item.price * item.quantity, 0)
+    const subTotal =
+      this.order.reduce((total, item) => total + item.price * item.quantity, 0) - twoForOneDiscount
     const spendXSaveYDiscount = this.spendXSaveYDiscount(subTotal)
-    return subTotal - twoForOneDiscount - spendXSaveYDiscount
+    return subTotal - spendXSaveYDiscount
   }
 
   private addQuantityToExistingProductInOrder(productInOrder: ProductWQuantity, quantity: number) {
