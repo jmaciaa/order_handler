@@ -3,8 +3,14 @@
     {
       "id": 12,
       "name": "Spring rolls",
-      "type": "rolls",
+      "type": "starter",
       "price": 4.5
+    },
+    {
+      "id": 13,
+      "name": "Soup",
+      "type": "starter",
+      "price": 5
     },
     {
       "id": 21,
@@ -21,10 +27,13 @@
   ],
   "promotions": {
     "TWO_FOR_ONE": { "products": [12, 21] },
-    "SPEND_X_SAVE_Y": [{ "x": 20, "y": 5 }]
+    "SPEND_X_SAVE_Y": [{ "x": 20, "y": 5 }],
+    "MENU": { "items": ["starter", "rice", "meat"], "price": 14 }
   },
   "mockedOrder": [
-    { "id": 12, "name": "Spring rolls", "type": "rolls", "price": 4.5, "quantity": 4 },
-    { "id": 21, "name": "Fried rice with pork", "type": "rice", "price": 6, "quantity": 5 }
+    { "id": 21, "name": "Fried rice with pork", "type": "rice", "price": 6 },
+    { "id": 12, "name": "Spring rolls", "type": "starter", "price": 4.5 },
+    { "id": 12, "name": "Spring rolls", "type": "starter", "price": 4.5 },
+    { "id": 37, "name": "Chicken with almond sauce", "type": "meat", "price": 6.5 }
   ]
 }

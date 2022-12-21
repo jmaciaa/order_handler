@@ -6,10 +6,15 @@ const { products, promotions } = testData
 describe("MyOrderHandler", () => {
   test("adds items properly", () => {
     const orderHandler = new MyOrderHandler(products, promotions)
-    orderHandler.add(21, 3)
-    orderHandler.add(12, 4)
-    orderHandler.add(21, 2)
+    orderHandler.add(21, 1)
+    orderHandler.add(12, 2)
+    orderHandler.add(37, 1)
     expect(orderHandler.order).toEqual(testData.mockedOrder)
+  })
+
+  test("throws when a not existing item is added to the order", () => {
+    const orderHandler = new MyOrderHandler(products, promotions)
+    expect(() => orderHandler.add(0, 1)).toThrow()
   })
 
   test("applies '2 x 1' discount properly", () => {
@@ -23,17 +28,36 @@ describe("MyOrderHandler", () => {
   test("applies 'Spend X save Y' discount properly", () => {
     const orderHandler = new MyOrderHandler(products, promotions)
     orderHandler.add(21, 1)
-    orderHandler.add(12, 1)
-    orderHandler.add(37, 5)
+    orderHandler.add(37, 4)
     const total = orderHandler.getTotal()
-    expect(total).toBe(38)
+    expect(total).toBe(27)
   })
 
-  test("applies all discounts properly", () => {
+  test("applies menu promo properly", () => {
+    const orderHandler = new MyOrderHandler(products, promotions)
+    orderHandler.add(37, 1)
+    orderHandler.add(12, 1)
+    orderHandler.add(21, 1)
+    const total = orderHandler.getTotal()
+    expect(total).toBe(14)
+  })
+
+  test("applies all discounts together properly", () => {
     const orderHandler = new MyOrderHandler(products, promotions)
     orderHandler.add(12, 4)
+    orderHandler.add(21, 1)
     orderHandler.add(37, 2)
     const total = orderHandler.getTotal()
-    expect(total).toBe(17)
+    expect(total).toBe(29.5)
+  })
+
+  test("calculates total correctly if there are no promotions", () => {
+    const noPromotions = {}
+    const orderHandler = new MyOrderHandler(products, noPromotions)
+    orderHandler.add(12, 4)
+    orderHandler.add(21, 1)
+    orderHandler.add(37, 2)
+    const total = orderHandler.getTotal()
+    expect(total).toBe(37)
   })
 })
