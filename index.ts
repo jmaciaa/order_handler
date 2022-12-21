@@ -1,5 +1,3 @@
-import db from "./data.json"
-
 type Product = { id: number; name: string; price: number }
 type ProductWQuantity = Product & { quantity: number }
 type Promotions = {
@@ -12,13 +10,17 @@ type SpendXSaveYPromo = { x: number; y: number }[]
 
 export class MyOrderHandler {
   public order: ProductWQuantity[]
+  private readonly products: Product[]
+  private readonly promotions: Promotions
 
-  constructor() {
+  constructor(products: Product[], promotions: Promotions) {
     this.order = []
+    this.products = products
+    this.promotions = promotions
   }
 
   public add(itemId: number, quantity: number) {
-    const products = db.products
+    const products = this.products
     const item = products.find((product) => product.id === itemId)
     if (!item) throw new Error(`Item with id ${itemId} not found`)
     const productInOrder = this.order.find((product) => product.id === itemId)
@@ -46,7 +48,7 @@ export class MyOrderHandler {
   }
 
   private twoForOneDiscount() {
-    const twoForOnePromos: Promotions["TWO_FOR_ONE"] = db.promotions.TWO_FOR_ONE
+    const twoForOnePromos = this.promotions.TWO_FOR_ONE
     if (!twoForOnePromos) return 0
     const discountedProducts = twoForOnePromos.products
     return this.order.reduce((totalDiscount, product) => {
@@ -59,7 +61,7 @@ export class MyOrderHandler {
   }
 
   private spendXSaveYDiscount(subTotal: number) {
-    const spendXSaveYPromos: Promotions["SPEND_X_SAVE_Y"] = db.promotions.SPEND_X_SAVE_Y
+    const spendXSaveYPromos = this.promotions.SPEND_X_SAVE_Y
     if (!spendXSaveYPromos) return 0
     const sortedSpendXSaveYPromos = this.sortSpendXSaveYPromos(spendXSaveYPromos)
     const applicablePromo = sortedSpendXSaveYPromos.find((promo) => promo.x <= subTotal)
