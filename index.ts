@@ -5,7 +5,7 @@ import {
   SpendXSaveYPromo,
   MenuPromo,
   ItemsGroupedByMenuComponent,
-} from "./index.decs"
+} from "./index.d"
 import { mapValues } from "./utils"
 
 export class MyOrderHandler {
