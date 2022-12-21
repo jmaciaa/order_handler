@@ -20,7 +20,11 @@
     }
   ],
   "promotions": {
-    "TWO_FOR_ONE": { "products": [12] },
+    "TWO_FOR_ONE": { "products": [12, 21] },
     "SPEND_X_SAVE_Y": [{ "x": 20, "y": 5 }]
-  }
+  },
+  "mockedOrder": [
+    { "id": 12, "name": "Spring rolls", "type": "rolls", "price": 4.5, "quantity": 4 },
+    { "id": 21, "name": "Fried rice with pork", "type": "rice", "price": 6, "quantity": 5 }
+  ]
 }
