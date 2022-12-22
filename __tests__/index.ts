@@ -1,5 +1,5 @@
-import { MyOrderHandler } from "./index"
-import * as testData from "./test.data.json"
+import { MyOrderHandler } from "../src/index"
+import * as testData from "../data.json"
 
 const { products, promotions } = testData
 
