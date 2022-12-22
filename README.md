@@ -1,6 +1,6 @@
 # My Order Handler
 
-MyOrderHandler is a service for creating an order and apply promotions to it.
+MyOrderHandler is a service for creating an order and applying promotions to it.
 
 When calculating the total price of the order, first all items are checked to see if one or more menus can be formed so the client can benefit from the 'Menu' promo (if available).
 
