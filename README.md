@@ -20,4 +20,4 @@ Finally the 'Spend X Save Y' promo is applied.
 ## Test:
 
 The service is already compiled under the /dist folder.
-Just run `npm test` to run tests
+Just run `npm i && npm test` to run tests
